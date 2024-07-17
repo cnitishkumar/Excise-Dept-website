@@ -1,0 +1,9 @@
+.home-component{
+
+    background-image: linear-gradient(195deg, #172a74 0%, #21a9af 100%);
+    height:100vh;
+    width: 100vw;
+    background-size: cover;
+    margin: 0px;
+    padding: 0px;
+}

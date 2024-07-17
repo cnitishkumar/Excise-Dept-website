@@ -1,0 +1,37 @@
+<div class="profile-component">
+    <div class="profile-header-container">
+        <h2 class="heading">Telangana Excise Department</h2>
+    </div>
+    <div class="body-container">
+        <div class="admin-card">
+            <h5 class="admin-card-heading">Admin ****</h5>
+            <p class="admit-active-status">Active</p>
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjxivAs4UknzmDfLBXGMxQkayiZDhR2ftB4jcIV7LEnIEStiUyMygioZnbLXCAND-I_xWQpVp0jv-dv9NVNbuKn4sNpXYtLIJk2-IOdWQNpC2Ldapnljifu0pnQqAWU848Ja4lT9ugQex-nwECEh3a96GXwiRXlnGEE6FFF_tKm66IGe3fzmLaVIoNL/s1600/img_avatar.png" alt="admin profile image" class="admin-profile-image"/>
+            <button type="button" class="profile-btn">Profile</button>
+            <p class="license-approved-status">Lisence Approver</p>
+            <p>Excise Department</p>
+            <hr class="hr">
+            <p>Approved Lisence - 10003</p>
+            <p>Pending Lisence - 39</p>
+            <p>Regected Lisence - 20</p>
+            <hr class="hr">
+        </div>
+
+        <div class="admin-info">
+            <div class="admin-info-header">
+                <h5 class="admin-info-heading">Admin Information</h5>
+                <a [routerLink]="['/login']">
+                <button type="button" class="logout-btn" >Logout</button>
+            </a>
+               
+            </div>
+            <div class="admin-details-container">
+                <p class="admin-details">First Name  <span class="admin-details-span">Admin</span></p>
+                <p class="admin-details">User Email <span class="admin-details-span">admingmail.com</span></p>
+
+            </div>
+        </div>
+
+    </div>
+    <app-footer></app-footer>
+</div>

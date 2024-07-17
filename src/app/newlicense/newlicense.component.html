@@ -1,0 +1,448 @@
+<div class="new-license-component">
+  <div class="banner">
+    <a [routerLink]="['/']">
+      <button type="button" class="home-btn">Home</button>
+    </a>
+
+    <div class="banner-contetnt">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/en/6/61/Emblem_of_Telangana.svg"
+        class="ts-emblem"
+      />
+
+      <h2 class="newlicense-heading">New License Registration</h2>
+
+      <form
+        class="form-el"
+        [formGroup]="newLicenseForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="category-div">
+          <h4 class="category-heading">Shop Details</h4>
+
+          <!-- start -->
+          <label>Select-Please type of Shop</label>
+          <div class="form-floating shop-type-select-container">
+            <div
+              [ngClass]="{
+                'form-floating custom': true,
+                error:
+                  isFormSubmitted && newLicenseForm.controls['shopType'].invalid
+              }"
+            >
+              <select
+                class="form-select select-dist"
+                (change)="onOptionChangeShopType($event.target)"
+                (focus)="onFocusChangeShop()"
+                (blur)="onBlurChangeShop()"
+                formControlName="shopType"
+              >
+                <option value="barCumRestaurant">Bar cum Restaurant</option>
+                <option value="barCumHotel">Bar cum Hotel</option>
+                <option value="barCumRestaurantCumHotel">
+                  Bar cum Restaurant cum Hotel
+                </option>
+                <option value="modelShop">Model Shop</option>
+              </select>
+            </div>
+          </div>
+          <div class="category-sub-div">
+            <div class="form-floating name-input-container">
+              <!-- //Start// -->
+
+              <input
+                type="text"
+                (focus)="onFocusShopName()"
+                (blur)="onBlurShopName()"
+                [ngClass]="{
+                  'form-control custom': true,
+                  error:
+                    isFormSubmitted &&
+                    newLicenseForm.controls['shopName'].invalid
+                }"
+                id="floatingPassword"
+                placeholder="Shop Name"
+                formControlName="shopName"
+                class="shopname-input-el"
+                required
+              />
+              <label for="floatingPassword">Shop Name</label>
+
+              <!-- shop name -->
+            </div>
+
+            <div
+              class="form-floating name-input-container"
+              [ngClass]="{
+                'form-control custom': true,
+                error:
+                  isFormSubmitted &&
+                  newLicenseForm.controls['shopDistrict'].invalid
+              }"
+            >
+              <div
+                *ngIf="
+                  shopDistFocus ||
+                  newLicenseForm.controls['shopDistrict'].touched ||
+                  newLicenseForm.controls['shopDistrict'].valid ||
+                  !newLicenseForm.controls['shopDistrict'].touched
+                "
+              >
+                <label
+                  [ngClass]="{
+                    'shop-dist': true,
+                    'shop-dist-focus': 'shopDistFocus'
+                  }"
+                  >Select the District</label
+                >
+              </div>
+              <select
+                class="shop-dist-select-el"
+                (focus)="onShopDistFocus()"
+                (blur)="onShopDistBlur()"
+                formControlName="shopDistrict"
+              >
+                <option selected hidden>Select the District</option>
+
+                <option value="Dist 1">Dist 1</option>
+                <option value="Dist 2">Dist 2</option>
+                <option value="Dist 3">Dist 3</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <div>
+              <div class="form-floating">
+                <input
+                  type="text"
+                  (focus)="onFocusShopAddress()"
+                  (blur)="onBlurShopAddress()"
+                  [ngClass]="{
+                    'form-control custom shopAddress-name': true,
+                    error:
+                      isFormSubmitted &&
+                      newLicenseForm.controls['shopAddress'].invalid
+                  }"
+                  id="floatingPassword"
+                  placeholder="Address"
+                  formControlName="shopAddress"
+                  required
+                />
+                <label for="floatingPassword">Address</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- personalDetails -->
+
+        <div class="category-div">
+          <h4 class="category-heading">Personal Details</h4>
+          <div class="name-father-dob-container">
+            <!-- person name -->
+            <div class="form-floating form-float-height">
+              <input
+                type="text"
+                (focus)="onFocusPersonName()"
+                (blur)="onBlurPersonName()"
+                [ngClass]="{
+                  'form-control custom shopAddress-name': true,
+                  error:
+                    isFormSubmitted &&
+                    newLicenseForm.controls['personName'].invalid
+                }"
+                id="floatingPassword"
+                placeholder="name"
+                formControlName="personName"
+                required
+              />
+              <label for="floatingPassword">Name</label>
+            </div>
+            <!-- fathers name -->
+            <div class="form-floating form-float-height">
+              <input
+                type="text"
+                (focus)="onFocusFatherName()"
+                (blur)="onBlurFatherName()"
+                [ngClass]="{
+                  'form-control custom': true,
+                  error:
+                    isFormSubmitted &&
+                    newLicenseForm.controls['fatherName'].invalid
+                }"
+                id="floatingPassword"
+                placeholder="Father's Name"
+                formControlName="fatherName"
+                class="shopname-input-el"
+                required
+              />
+              <label for="floatingPassword">Father's Name</label>
+            </div>
+
+            <!-- DOB -->
+
+            <div class="form-floating form-float-height">
+              <input
+                type="date"
+                (focus)="onFocusDob()"
+                (blur)="onBlurDob()"
+                [ngClass]="{
+                  'form-control custom': true,
+                  error:
+                    isFormSubmitted && newLicenseForm.controls['dob'].invalid
+                }"
+                id="floatingPassword"
+                placeholder="name"
+                formControlName="dob"
+                required
+              />
+            </div>
+          </div>
+          <!-- //qualification and occupation -->
+          <div class="qualification-occupation-container">
+            <div class="form-floating qualification-container">
+              <input
+                type="text"
+                (focus)="onFocusQualification()"
+                (blur)="onBlurQualification()"
+                [ngClass]="{
+                  'form-control custom': true,
+                  error:
+                    isFormSubmitted &&
+                    newLicenseForm.controls['qualification'].invalid
+                }"
+                id="floatingPassword"
+                placeholder="Qualification"
+                formControlName="qualification"
+                class="shopname-input-el"
+                required
+              />
+              <label for="floatingPassword">Qualification</label>
+            </div>
+
+            <!-- occupation -->
+
+            <div class="form-floating qualification-container">
+              <input
+                type="text"
+                (focus)="onFocusOccupation()"
+                (blur)="onBlurOccupation()"
+                [ngClass]="{
+                  'form-control custom': true,
+                  error:
+                    isFormSubmitted &&
+                    newLicenseForm.controls['occupation'].invalid
+                }"
+                id="floatingPassword"
+                placeholder="Occupation"
+                formControlName="occupation"
+                class="shopname-input-el"
+                required
+              />
+              <label for="floatingPassword">Occupation</label>
+            </div>
+          </div>
+          <!-- // -->
+
+          <div class="icome-email-container">
+            <div class="form-floating income">
+              <input
+                type="number"
+                (focus)="onFocusIncome()"
+                (blur)="onBlurIncome()"
+                [ngClass]="{
+                  'form-control custom': true,
+                  error:
+                    isFormSubmitted && newLicenseForm.controls['income'].invalid
+                }"
+                id="floatingPassword"
+                placeholder="Income"
+                formControlName="income"
+                class="shopname-input-el"
+                required
+              />
+              <label for="floatingPassword">Income</label>
+            </div>
+            <div class="form-floating income">
+              <input
+                type="number"
+                (focus)="onFocusExperience()"
+                (blur)="onBlurExperience()"
+                [ngClass]="{
+                  'form-control custom': true,
+                  error:
+                    isFormSubmitted &&
+                    newLicenseForm.controls['experience'].invalid
+                }"
+                id="floatingPassword"
+                placeholder="Experience"
+                formControlName="experience"
+                class="shopname-input-el"
+                required
+              />
+              <label for="floatingPassword">Experience</label>
+            </div>
+            <div class="form-floating income">
+              <input
+                type="email"
+                (focus)="onFocusEmail()"
+                (blur)="onBlurEmail()"
+                [ngClass]="{
+                  'form-control custom': true,
+                  error:
+                    isFormSubmitted && newLicenseForm.controls['email'].invalid
+                }"
+                id="floatingPassword"
+                placeholder="Email"
+                formControlName="email"
+                class="shopname-input-el"
+                required
+              />
+              <label for="floatingPassword">Email</label>
+            </div>
+
+            <div class="form-floating income">
+              <input
+                type="number"
+                (focus)="onFocusContact()"
+                (blur)="onBlurContact()"
+                [ngClass]="{
+                  'form-control custom': true,
+                  error:
+                    isFormSubmitted &&
+                    newLicenseForm.controls['contact'].invalid
+                }"
+                id="floatingPassword"
+                placeholder="Contact"
+                formControlName="contact"
+                class="shopname-input-el"
+                required
+              />
+              <label for="floatingPassword">Contact</label>
+            </div>
+          </div>
+          <!-- // -->
+
+          <div class="category-div">
+            <h4 class="category-heading">Address</h4>
+            <div class="address-main-container">
+              <div class="form-floating address-container">
+                <input
+                  type="text"
+                  (focus)="onFocusCity()"
+                  (blur)="onBlurCity()"
+                  [ngClass]="{
+                    'form-control custom': true,
+                    error:
+                      isFormSubmitted && newLicenseForm.controls['city'].invalid
+                  }"
+                  id="floatingPassword"
+                  placeholder="City"
+                  formControlName="city"
+                  class="shopname-input-el"
+                  required
+                />
+                <label for="floatingPassword">City</label>
+              </div>
+
+              <div class="form-floating postelcode-container">
+                <input
+                  type="number"
+                  (focus)="onFocusPostelCode()"
+                  (blur)="onBlurPostelCode()"
+                  [ngClass]="{
+                    'form-control custom': true,
+                    error:
+                      isFormSubmitted &&
+                      newLicenseForm.controls['postelCode'].invalid
+                  }"
+                  id="floatingPassword"
+                  placeholder="Postel Code"
+                  formControlName="postelCode"
+                  class="shopname-input-el"
+                  required
+                />
+                <label for="floatingPassword">Postel Code</label>
+                <!-- <div *ngIf="(newLicenseForm.controls['postelCode'].errors && newLicenseForm.controls['postelCode'].touched && postelCodeFocus )">
+                  <p>Enter a valid Pincode</p>
+                </div> -->
+              </div>
+
+              <div class="form-floating postelcode-container">
+                <div
+                  [ngClass]="{
+                    'form-floating custom': true,
+                    error:
+                      isFormSubmitted &&
+                      newLicenseForm.controls['district'].invalid
+                  }"
+                >
+                  <label class="label-dist">Select the District</label>
+
+                  <select
+                    class="form-select shop-dist"
+                    (change)="onChangeDist($event.target)"
+                    (focus)="onFocusDist()"
+                    (blur)="onBlurDist()"
+                    formControlName="district"
+                  >
+                    <option value="dist 1">Dist 1</option>
+                    <option value="dist 2">Dist 2</option>
+                    <option value="dist 3">Dist 3</option>
+                    <option value="dist 4">Dist 4</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-floating">
+              <input
+                type="text"
+                (focus)="onFocusAddress()"
+                (blur)="onBlurAddress()"
+                [ngClass]="{
+                  'form-control custom': true,
+                  error:
+                    isFormSubmitted &&
+                    newLicenseForm.controls['address'].invalid
+                }"
+                id="floatingPassword"
+                placeholder="Address"
+                formControlName="address"
+                class="shopname-input-el"
+                required
+              />
+              <label for="floatingPassword">Address</label>
+            </div>
+          </div>
+        </div>
+
+        <p
+          [ngClass]="{
+            message: true,
+            'text-success': submitSuccess,
+            'text-primary': !submitSuccess
+          }"
+        >
+          {{ message }}
+        </p>
+        <button class="register-btn" type="submit">Register</button>
+
+        <p class="submit-caution">
+          By clicking submit you are agreeing to the terms and conditions
+        </p>
+        <hr class="hr1" />
+        <p class="submit-caution">
+          By clicking submit you are agreeing to the terms and conditions
+        </p>
+        <hr class="hr2" />
+      </form>
+    </div>
+
+    <div class="footer">
+      <p class="copyright-caution">
+        Copyright <a href="https://www.ridhitek.com/">Ridhitek</a>. All rights
+        reserved.
+      </p>
+    </div>
+  </div>
+</div>
